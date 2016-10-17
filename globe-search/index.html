@@ -135,6 +135,7 @@
         var data = JSON.parse(xhr.responseText);
         window.data = data;
         globe.addData(data, {format: 'magnitude'});
+        console.log(data);
         globe.createPoints();
         globe.animate();
         document.body.style.backgroundImage = 'none'; // remove loading
