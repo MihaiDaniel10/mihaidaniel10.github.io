@@ -134,7 +134,7 @@
       if (xhr.status === 200) {
         var data = JSON.parse(xhr.responseText);
         window.data = data;
-        globe.addData(data, {format: 'legend'});
+        globe.addData(data, {format: 'magnitude'});
         globe.createPoints();
         globe.animate();
         document.body.style.backgroundImage = 'none'; // remove loading
