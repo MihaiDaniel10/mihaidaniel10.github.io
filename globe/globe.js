@@ -13,18 +13,21 @@
 
 var DAT = DAT || {};
 
-DAT.Globe = function(container, colorFn) {
 
-  colorFn = colorFn || function(x) {
+DAT.Globe = function(container, opts) {
+  opts = opts || {};
+  
+  var colorFn = opts.colorFn || function(x) {
     var c = new THREE.Color();
-    c.setHSV( ( 0.6 - ( x * 0.5 ) ), 1.0, 1.0 );
+    c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
     return c;
   };
+  var imgDir = opts.imgDir || '/globe/';
 
   var Shaders = {
     'earth' : {
       uniforms: {
-        'texture': { type: 't', value: 0, texture: null }
+        'texture': { type: 't', value: null }
       },
       vertexShader: [
         'varying vec3 vNormal;',
@@ -126,7 +129,7 @@ DAT.Globe = function(container, colorFn) {
     shader = Shaders['atmosphere'];
     uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
-    material = new THREE.MeshShaderMaterial({
+    material = new THREE.ShaderMaterial({
 
           uniforms: uniforms,
           vertexShader: shader.vertexShader,
