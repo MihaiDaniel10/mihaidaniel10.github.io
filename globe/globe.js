@@ -202,8 +202,8 @@ DAT.Globe = function(container, opts) {
     }
     var subgeo = new THREE.Geometry();
     for (i = 0; i < data.length; i += step) {
-      lat = round(data[i]);
-      lng = round(data[i + 1]);
+      lat = Math.round(data[i]);
+      lng = Math.round(data[i + 1]);
       color = colorFnWrapper(data,i);
       size = data[i + 2];
       //size = size*200;
